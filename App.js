@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight,
   },
   search: {
-    backgroundColor: "green",
+    // backgroundColor: "green",
     padding: 16,
   },
   list: {
