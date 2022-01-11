@@ -1,5 +1,12 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import {
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Platform
+} from "react-native";
 
 import { colors } from "./src/utils/colors";
 import { spacing } from "./src/utils/sizes";
@@ -7,7 +14,7 @@ import { spacing } from "./src/utils/sizes";
 export default function App() {
   return (
     <>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
         <View style={styles.search}>
           <Text>search</Text>
         </View>
@@ -15,7 +22,7 @@ export default function App() {
           <Text>list</Text>
         </View>
       </SafeAreaView>
-      <StatusBar style="auto" />
+      <ExpoStatusBar style="auto" />
     </>
   );
 }
