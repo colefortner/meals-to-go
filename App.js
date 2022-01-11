@@ -8,13 +8,10 @@ import {
   Platform
 } from "react-native";
 
-import { colors } from "./src/utils/colors";
-import { spacing } from "./src/utils/sizes";
-
 export default function App() {
   return (
     <>
-      <SafeAreaView style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.search}>
           <Text>search</Text>
         </View>
@@ -28,15 +25,17 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight
+  },
   search: {
     backgroundColor: colors.green,
-    padding: spacing.md,
-    fontWeight: "bold"
+    padding: 16
   },
   list: {
     flex: 1,
     backgroundColor: colors.blue,
-    fontWeight: "bold",
-    padding: spacing.md
+    padding: 16
   }
 });
