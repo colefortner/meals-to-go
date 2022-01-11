@@ -6,28 +6,30 @@ import { spacing } from "./src/utils/sizes";
 
 export default function App() {
   return (
-    <SafeAreaView>
-      <View style={styles.search}>
-        <Text>search</Text>
-      </View>
-      <View style={styles.list}>
-        <Text>list</Text>
-      </View>
-    </SafeAreaView>
+    <>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.search}>
+          <Text>search</Text>
+        </View>
+        <View style={styles.list}>
+          <Text>list</Text>
+        </View>
+      </SafeAreaView>
+      <StatusBar style="auto" />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   search: {
     backgroundColor: colors.green,
-    height: "5%",
-    padding: spacing.sm,
+    padding: spacing.md,
     fontWeight: "bold"
   },
   list: {
+    flex: 1,
     backgroundColor: colors.blue,
-    height: "95%",
     fontWeight: "bold",
-    padding: spacing.sm
+    padding: spacing.md
   }
 });
