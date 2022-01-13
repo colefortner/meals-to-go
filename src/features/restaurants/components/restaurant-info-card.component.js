@@ -31,7 +31,7 @@ const Address = styled.Text`
   font-size: ${(props) => props.theme.fontSizes.caption};
 `;
 
-const SvgRow = styled.View`
+const Section = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
@@ -42,7 +42,7 @@ const Rating = styled.View`
   padding-bottom: ${(props) => props.theme.space[2]};
 `;
 
-const Open = styled.View`
+const SectionEnd = styled.View`
   padding-top: ${(props) => props.theme.space[2]};
   padding-bottom: ${(props) => props.theme.space[2]};
 `;
@@ -67,16 +67,16 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Title>{name}</Title>
-        <SvgRow>
+        <Section>
           <Rating>
             {ratingArray.map((rating, index) => (
               <SvgXml key={index} xml={star} width={20} height={20} />
             ))}
           </Rating>
-          <Open>
-            <SvgXml xml={open} width={20} height={20} />
-          </Open>
-        </SvgRow>
+          <SectionEnd>
+            {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
+          </SectionEnd>
+        </Section>
         <Address>{address}</Address>
       </Info>
     </RestaurantCard>
