@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, Image, View } from "react-native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 
@@ -33,7 +33,7 @@ const Address = styled.Text`
 
 const Section = styled.View`
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
 `;
 
 const Rating = styled.View`
@@ -43,6 +43,9 @@ const Rating = styled.View`
 `;
 
 const SectionEnd = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-end;
   padding-top: ${(props) => props.theme.space[2]};
   padding-bottom: ${(props) => props.theme.space[2]};
 `;
@@ -50,14 +53,14 @@ const SectionEnd = styled.View`
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Pinellas Ale House",
-    icon,
+    icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
     photos = [
       "https://cdn.onebauer.media/one/lifestyle-images/celebrity/58aae0a65182f50c2a1ef301/kate-middleton-hero.jpg?format=jpg&quality=80&width=1400&ratio=16-9&resize=aspectfill",
     ],
     address = "100 some random st",
     isOpenNow = true,
     rating = 4,
-    isClosedTemporarily,
+    isClosedTemporarily = true,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
@@ -74,7 +77,15 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
             ))}
           </Rating>
           <SectionEnd>
+            {isClosedTemporarily && (
+              <Text variant="label" style={{ color: "red" }}>
+                CLOSED TEMPORARILY
+              </Text>
+            )}
+            <View style={{ paddingLeft: 16 }} />
             {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
+            <View style={{ paddingLeft: 16 }} />
+            <Image style={{ width: 15, height: 16 }} source={{ uri: icon }} />
           </SectionEnd>
         </Section>
         <Address>{address}</Address>
