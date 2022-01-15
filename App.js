@@ -17,6 +17,36 @@ import { SafeArea } from "./src/components/utility/safe-area.component";
 
 import { theme } from "./src/infrastructure/theme";
 
+const TAB_ICON = {
+  Restaurants: "md-restaurant",
+  Map: "md-map",
+  Settings: "md-settings",
+};
+const Settings = () => {
+  return (
+    <SafeArea>
+      <Text>Settings Screen</Text>
+    </SafeArea>
+  );
+};
+
+const Maps = () => {
+  return (
+    <SafeArea>
+      <Text>Maps Screen</Text>
+    </SafeArea>
+  );
+};
+
+const createScreenOptions = ({ route }) => {
+  const iconName = TAB_ICON[route.name];
+  return {
+    tabBarIcon: ({ size, color }) => (
+      <Ionicons name={iconName} size={size} color={color} />
+    ),
+  };
+};
+
 export default function App() {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
   const [latoLoaded] = useLato({ Lato_400Regular });
@@ -25,22 +55,6 @@ export default function App() {
     return null;
   }
 
-  const Settings = () => {
-    return (
-      <SafeArea>
-        <Text>Settings Screen</Text>
-      </SafeArea>
-    );
-  };
-
-  const Maps = () => {
-    return (
-      <SafeArea>
-        <Text>Maps Screen</Text>
-      </SafeArea>
-    );
-  };
-
   const Tab = createBottomTabNavigator();
 
   return (
@@ -48,22 +62,11 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <NavigationContainer>
           <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ color, size }) => {
-                let iconName;
-
-                if (route.name === "Restaurants") {
-                  iconName = "md-restaurant";
-                } else if (route.name === "Map") {
-                  iconName = "md-map";
-                } else if (route.name === "Settings") {
-                  iconName = "md-settings";
-                }
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-              tabBarActiveTintColor: "tomato",
-              tabBarInactiveTintColor: "gray",
-            })}
+            screenOptions={createScreenOptions}
+            tabBarOptions={{
+              activeTintColor: "tomato",
+              inactiveTintColor: "gray",
+            }}
           >
             <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
             <Tab.Screen name="Map" component={Maps} />
