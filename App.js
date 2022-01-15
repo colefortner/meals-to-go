@@ -49,17 +49,17 @@ export default function App() {
         <NavigationContainer>
           <Tab.Navigator
             screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused, color, size }) => {
+              tabBarIcon: ({ color, size }) => {
                 let iconName;
 
                 if (route.name === "Restaurants") {
-                  iconName = "restaurant";
+                  iconName = "md-restaurant";
                 } else if (route.name === "Map") {
-                  iconName = "map";
+                  iconName = "md-map";
                 } else if (route.name === "Settings") {
-                  iconName = "settings";
+                  iconName = "md-settings";
                 }
-                return <Ionicons name={iconName} size={20} color={"tomato"} />;
+                return <Ionicons name={iconName} size={size} color={color} />;
               },
               tabBarActiveTintColor: "tomato",
               tabBarInactiveTintColor: "gray",
