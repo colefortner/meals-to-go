@@ -12,6 +12,8 @@ import {
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 
 import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurant.screen";
+import { SafeArea } from "./src/components/utility/safe-area.component";
+
 import { theme } from "./src/infrastructure/theme";
 
 export default function App() {
@@ -22,33 +24,36 @@ export default function App() {
     return null;
   }
 
-  function Restaurants() {
+  const Settings = () => {
     return (
-      <ThemeProvider theme={theme}>
-        <RestaurantsScreen />
-      </ThemeProvider>
+      <SafeArea>
+        <Text>Settings Screen</Text>
+      </SafeArea>
     );
-  }
+  };
 
-  function Settings() {
-    return <Text>Settings Screen</Text>;
-  }
-
-  function Maps() {
-    return <Text>Maps Screen</Text>;
-  }
+  const Maps = () => {
+    return (
+      <SafeArea>
+        <Text>Maps Screen</Text>
+      </SafeArea>
+    );
+  };
 
   const Tab = createBottomTabNavigator();
 
   return (
     <>
-      <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="Restaurants" component={Restaurants} />
-          <Tab.Screen name="Map" component={Maps} />
-          <Tab.Screen name="Settings" component={Settings} />
-        </Tab.Navigator>
-      </NavigationContainer>
+      <ThemeProvider theme={theme}>
+        <NavigationContainer>
+          <Tab.Navigator>
+            <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+            <Tab.Screen name="Map" component={Maps} />
+            <Tab.Screen name="Settings" component={Settings} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </ThemeProvider>
+
       <ExpoStatusBar style="auto" />
     </>
   );
