@@ -16,7 +16,7 @@ import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurant
 import { SafeArea } from "./src/components/utility/safe-area.component";
 
 import { theme } from "./src/infrastructure/theme";
-
+import { restaurantsRequest } from "./src/services/restaurants/restaurants.service";
 const TAB_ICON = {
   Restaurants: "md-restaurant",
   Map: "md-map",
