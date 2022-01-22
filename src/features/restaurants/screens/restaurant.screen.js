@@ -19,21 +19,28 @@ const RestaurantList = styled(FlatList).attrs({
   },
 })``;
 
+const Loading = styled(ActivityIndicator)`
+  margin-left: -25px;
+`;
+
+const LoadingContainer = styled.View`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;
+
 export const RestaurantsScreen = () => {
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
   return (
     <SafeArea>
+      {isLoading && (
+        <LoadingContainer>
+          <Loading size={50} animating={true} color={Colors.blue300} />
+        </LoadingContainer>
+      )}
       <SearchContainer>
         <Searchbar placeholder="Search" />
       </SearchContainer>
-      {isLoading && (
-        <ActivityIndicator
-          animating={true}
-          color={Colors.blue800}
-          size={50}
-          style={{ marginTop: 200 }}
-        />
-      )}
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
