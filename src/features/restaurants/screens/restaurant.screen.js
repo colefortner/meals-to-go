@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Searchbar } from "react-native-paper";
 import { FlatList } from "react-native";
 import styled from "styled-components/native";
+import { ActivityIndicator, Colors } from "react-native-paper";
 
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
@@ -25,6 +26,14 @@ export const RestaurantsScreen = () => {
       <SearchContainer>
         <Searchbar placeholder="Search" />
       </SearchContainer>
+      {isLoading && (
+        <ActivityIndicator
+          animating={true}
+          color={Colors.blue800}
+          size={50}
+          style={{ marginTop: 200 }}
+        />
+      )}
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
