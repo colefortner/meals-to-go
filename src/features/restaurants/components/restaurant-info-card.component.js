@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { StyleSheet, Image, View } from "react-native";
 import { SvgXml } from "react-native-svg";
 
+import { Favorite } from "../../../components/favorite/favorite.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
 import star from "../../../../assets/star";
@@ -36,6 +37,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
 
   return (
     <RestaurantCard elevation={5}>
+      <Favorite />
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
