@@ -7,6 +7,7 @@ import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
+import { FavoritesContext } from "../../../services/favorites/favorites.context";
 import { Search } from "../components/search.component";
 import { FavoritesBar } from "../../../components/favorite/favorites-bar.component";
 
@@ -29,7 +30,7 @@ const LoadingContainer = styled.View`
 export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
   const [isToggled, setIsToggled] = useState(false);
-  // const { favorites } = useContext(FavoritesContext);
+  const { favorites } = useContext(FavoritesContext);
   // console.log(navigation);
   // console.log(favorites);
   return (
@@ -43,7 +44,9 @@ export const RestaurantsScreen = ({ navigation }) => {
         isFavoritesToggled={isToggled}
         onFavoritesToggle={() => setIsToggled(!isToggled)}
       />
-      {isToggled && <FavoritesBar />}
+      {isToggled && (
+        <FavoritesBar favorites={favorites} onNavigate={navigation.navigate} />
+      )}
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
