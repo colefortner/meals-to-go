@@ -12,7 +12,7 @@ const SearchContainer = styled.View`
   width: 100%;
 `;
 
-export const Search = ({ isFavoritesToggled, onFavoritesToggle }) => {
+export const Search = () => {
   const { keyword, search } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
 
@@ -23,8 +23,6 @@ export const Search = ({ isFavoritesToggled, onFavoritesToggle }) => {
   return (
     <SearchContainer>
       <Searchbar
-        icon={isFavoritesToggled ? "heart" : "heart-outline"}
-        onIconPress={onFavoritesToggle}
         placeholder="Search for a location"
         icon="map"
         value={searchKeyword}
