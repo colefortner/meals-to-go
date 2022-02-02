@@ -1,6 +1,7 @@
 import React from "react";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
+import * as firebase from "firebase";
 
 import {
   useFonts as useOswald,
@@ -13,6 +14,19 @@ import { LocationContextProvider } from "./src/services/location/location.contex
 import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation";
+
+const firebaseConfig = {
+  apiKey: "api-key",
+  authDomain: "project-id.firebaseapp.com",
+  databaseUrl: "https://project-id.firebaseio.com",
+  projectId: "project-id",
+  storageBucket: "projedct-id.appspot.com",
+  messagingSenderId: "sender-id",
+  appId: "app-id",
+  measurementId: "G-measurement-id",
+};
+
+firebase.intializeApp(firebaseConfig);
 
 export default function App() {
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
