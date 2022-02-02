@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
-import * as firebase from "firebase";
+// import * as firebase from "firebase";
+import { initializeApp } from "firebase/app";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 import {
   useFonts as useOswald,
@@ -15,26 +19,45 @@ import { FavoritesContextProvider } from "./src/services/favorites/favorites.con
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation";
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "api-key",
-  authDomain: "project-id.firebaseapp.com",
-  databaseUrl: "https://project-id.firebaseio.com",
-  projectId: "project-id",
-  storageBucket: "projedct-id.appspot.com",
-  messagingSenderId: "sender-id",
-  appId: "app-id",
-  measurementId: "G-measurement-id",
+  apiKey: "AIzaSyAzyKwlpMo6kcsvdZd4GIrSTwM-sFpPcTw",
+  authDomain: "mealstogo-f4e4d.firebaseapp.com",
+  projectId: "mealstogo-f4e4d",
+  storageBucket: "mealstogo-f4e4d.appspot.com",
+  messagingSenderId: "674134063618",
+  appId: "1:674134063618:web:bc7cf9529f69351886851b",
 };
 
-firebase.intializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword("cole@cole.com", "aaaaaaaa")
+        .then((user) => {
+          console.log(user);
+          setIsAuthenticated(true);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }, 2000);
+  }, []);
+
   const [oswaldLoaded] = useOswald({ Oswald_400Regular });
   const [latoLoaded] = useLato({ Lato_400Regular });
 
   if (!oswaldLoaded || !latoLoaded) {
     return null;
   }
+
+  if (!isAuthenticated) return null;
 
   return (
     <>
